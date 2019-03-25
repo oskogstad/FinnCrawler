@@ -9,6 +9,7 @@ Create a file called `emailConfig.json` in root folder.
     "secureConnection": true,
     "requiresAuth": true,
     "domains": ["gmail.com", "googlemail.com"],
+    "requireTLS": true,
     "logger": true,
     "direct": true,
     "auth": {
