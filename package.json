@@ -5,5 +5,8 @@
   "repository": "https://github.com/oskogstad/stunning-fiesta.git",
   "license": "MIT",
   "dependencies": {
+    "html2json": "^1.0.2",
+    "nodemailer": "^5.1.1",
+    "traverse": "^0.6.6"
   }
 }

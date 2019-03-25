@@ -1,4 +1,6 @@
 finnCodes.json
+emailConfig.json
+
 # Logs
 logs
 *.log
