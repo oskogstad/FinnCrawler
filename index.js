@@ -9,7 +9,7 @@ const finnAdBaseURL = 'https://www.finn.no/bap/forsale/ad.html?finnkode=';
 const emailConfigFileName = 'emailConfig.json';
 const finnCodesFileName = 'finnCodes.json';
 
-const timerInMilliseconds = 220000;
+const minimumWaitTimeInMs = 60000;
 
 let emailConfig = {};
 let finnCodes = {};
@@ -88,7 +88,12 @@ function GetAllAdsAndEmailNewONes() {
     }).on("error", (err) => {
         console.log("Error: " + err.message);
     });
+
+    let randomTimeToAddInMs = Math.floor(Math.random() * minimumWaitTimeInMs);
+    let totalWaitTimeInMs = minimumWaitTimeInMs + randomTimeToAddInMs;
+
+    console.log(`Waiting ${totalWaitTimeInMs/1000} seconds ...`);
+    setTimeout(GetAllAdsAndEmailNewONes, totalWaitTimeInMs);
 }
 
 GetAllAdsAndEmailNewONes();
-setInterval(GetAllAdsAndEmailNewONes, timerInMilliseconds);
