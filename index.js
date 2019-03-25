@@ -22,8 +22,6 @@ if(!fs.existsSync(emailConfigFileName)) {
 let emailConfigData = fs.readFileSync(emailConfigFileName);
 emailConfig = JSON.parse(emailConfigData);
 
-let transporter = nodemailer.createTransport(emailConfig);
-
 if(fs.existsSync(finnCodesFileName)) {
     let finnCodesData = fs.readFileSync(finnCodesFileName);
     finnCodes = JSON.parse(finnCodesData);
@@ -72,7 +70,9 @@ function GetAllAdsAndEmailNewONes() {
                     to: emailConfig.targetEmail,
                     subject: `${newAdsText}, gis bort|Spill og konsoll`,
                     html: htmlBody
-                  };
+                };
+                
+                let transporter = nodemailer.createTransport(emailConfig);
 
                 transporter.sendMail(mailOptions, (err, success) => {
                     if(err) {
