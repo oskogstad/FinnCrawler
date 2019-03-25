@@ -75,6 +75,7 @@ function GetAllAdsAndEmailNewONes() {
                 let transporter = nodemailer.createTransport(emailConfig);
 
                 transporter.sendMail(mailOptions, (err, success) => {
+                    transporter.close();
                     if(err) {
                         console.log(err);
                     }
