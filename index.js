@@ -27,7 +27,7 @@ if(fs.existsSync(finnCodesFileName)) {
     finnCodes = JSON.parse(finnCodesData);
 }
 
-function GetAllAdsAndEmailNewONes() {
+function GetAllAdsAndEmailNewOnes() {
     https.get(finnFreeGamesURL, (resp) => {
         let data = '';
         resp.on('data', (chunk) => {
@@ -94,7 +94,7 @@ function GetAllAdsAndEmailNewONes() {
     let totalWaitTimeInMs = minimumWaitTimeInMs + randomTimeToAddInMs;
 
     console.log(`Waiting ${totalWaitTimeInMs/1000} seconds ...`);
-    setTimeout(GetAllAdsAndEmailNewONes, totalWaitTimeInMs);
+    setTimeout(GetAllAdsAndEmailNewOnes, totalWaitTimeInMs);
 }
 
-GetAllAdsAndEmailNewONes();
+GetAllAdsAndEmailNewOnes();
