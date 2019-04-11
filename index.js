@@ -10,6 +10,7 @@ const emailConfigFileName = 'emailConfig.json';
 const finnCodesFileName = 'finnCodes.json';
 
 const minimumWaitTimeInMs = 60000;
+const oneHourInMs = 3600000;
 
 let emailConfig = {};
 let finnCodes = {};
@@ -93,6 +94,10 @@ function GetAllAdsAndEmailNewOnes() {
     let randomTimeToAddInMs = Math.floor(Math.random() * minimumWaitTimeInMs);
     let totalWaitTimeInMs = minimumWaitTimeInMs + randomTimeToAddInMs;
 
+    let current_hour = new Date().getHours();
+    if(current_hour < 7) {
+        totalWaitTimeInMs = oneHourInMs;
+    }
     console.log(`Waiting ${totalWaitTimeInMs/1000} seconds ...`);
     setTimeout(GetAllAdsAndEmailNewOnes, totalWaitTimeInMs);
 }
