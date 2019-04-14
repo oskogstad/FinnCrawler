@@ -62,7 +62,7 @@ namespace FindCrawler
                 }
                 catch (Exception ex)
                 {
-                    _minimumWaitTimeInMs = OneHourInMs / 2;
+                    _minimumWaitTimeInMs = _minimumWaitTimeInMs * 2;
                     using (var sw = File.AppendText("err.log"))
                     {
                         sw.WriteLine($"Message: {ex.Message}\nStackTrace{ex.StackTrace}");
