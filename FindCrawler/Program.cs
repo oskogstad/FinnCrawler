@@ -157,6 +157,11 @@ namespace FindCrawler
 
                 smtpClient.Send(message);
             }
+            
+            using (var sw = File.AppendText("email.log"))
+            {
+                sw.WriteLine($"{DateTime.Now} - Email sent:\n{body}\n\n");
+            }
         }
 
         private static void Setup()
