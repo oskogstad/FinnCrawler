@@ -15,7 +15,7 @@ namespace FindCrawler
     {
         private const string FinnFreeGamesUrl = "https://www.finn.no/bap/forsale/search.html?category=0.93&search_type=SEARCH_ID_BAP_FREE&sort=1&sub_category=1.93.3905";
         private const string FinnAdBaseUrl = "https://www.finn.no/bap/forsale/ad.html?finnkode=";
-        private const int TenSecondsInMs = 10000;
+        private const int TwentySecondsInMs = 20000;
         private const int OneHourInMs = 3600000;
         private const string GmailConfigFileName = "gmailConfig.json";
         private const string OldFinnCodesFileName = "oldFinnCodes.json";
@@ -24,7 +24,7 @@ namespace FindCrawler
         private const string FinnAdDescriptionXpathFilter = "//meta[contains(@name, 'description')]";
 
         private static readonly Random RandomGenerator = new Random();
-        private static int _minimumWaitTimeInMs = TenSecondsInMs;
+        private static int _minimumWaitTimeInMs = TwentySecondsInMs;
         private static Dictionary<string, DateTime> _oldFinnCodes;
         private static GmailConfig _gmailConfig;
         private static NetworkCredential _gmailCredentials;
@@ -58,7 +58,7 @@ namespace FindCrawler
                 try
                 {
                     DoWork();
-                    _minimumWaitTimeInMs = TenSecondsInMs;
+                    _minimumWaitTimeInMs = TwentySecondsInMs;
                 }
                 catch (Exception ex)
                 {
