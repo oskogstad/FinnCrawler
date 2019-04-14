@@ -1,5 +1,6 @@
 gmailConfig.json
 oldFinnCodes.json
+out/
 obj/
 bin/
 *.user
