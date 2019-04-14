@@ -25,6 +25,7 @@ namespace FindCrawler
 
         private static readonly Random RandomGenerator = new Random();
         private static int _minimumWaitTimeInMs = TwentySecondsInMs;
+        private static bool _shouldSlowDownForFirstRound;
         private static Dictionary<string, DateTime> _oldFinnCodes;
         private static GmailConfig _gmailConfig;
         private static NetworkCredential _gmailCredentials;
@@ -122,10 +123,14 @@ namespace FindCrawler
 
                 var adTitle = htmlAd.ChildNodes[1].ChildNodes[1].InnerText.Trim();
                 var adLocation = htmlAd.ChildNodes[3].ChildNodes[3].InnerText.Trim();
+                if(_shouldSlowDownForFirstRound)
+                    Thread.Sleep(1000);
+
                 var adDescription = GetAdDescription(adId);
                 newFinnAds.Add((Id: adId, Title: adTitle, Description: adDescription, Location: adLocation));
             }
 
+            _shouldSlowDownForFirstRound = false;
             return newFinnAds;
         }
 
@@ -173,6 +178,8 @@ namespace FindCrawler
                     .DeserializeObject<Dictionary<string, DateTime>>
                         (File.ReadAllText(OldFinnCodesFileName));
             }
+            else
+                _shouldSlowDownForFirstRound = true;
 
             _gmailConfig = JsonConvert.DeserializeObject<GmailConfig>(File.ReadAllText(GmailConfigFileName));
             _gmailCredentials = new NetworkCredential(_gmailConfig.SenderEmail, _gmailConfig.Password);
