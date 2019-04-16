@@ -39,6 +39,9 @@ namespace FindCrawler
             void DoWork()
             {
                 var finnAdsHtmlNodes = GetFinnAdsHtmlNodes();
+                if(finnAdsHtmlNodes == null)
+                    return;
+                
                 var newFinnAds = ExtractNewFinnAdsInfo(finnAdsHtmlNodes);
 
                 if (!newFinnAds.Any())
